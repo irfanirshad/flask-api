@@ -2,6 +2,7 @@
 
 ### Clone the application
 `git clone <url>`
+
 `cd flaskapi`
 
 

@@ -14,4 +14,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 8000
 
 # Set the entry point to run the Flask app
-CMD ["python", "main.py"]
+CMD ["python", "main.py", "--port", "8000"]
+

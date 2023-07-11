@@ -9,9 +9,9 @@
 `docker build -t flask-api . `
 
 ### Run the docker container
-docker run -p 8000:8000 flask-api
+`docker run -p 8000:8000 flask-api`
 
+### Test the application 
+Using Postman , send requests to it...
+<!-- TODO:  -->
 
-
-### How to Run? 
-docker build -t flask-api .

@@ -1,0 +1,16 @@
+blinker==1.5
+click==8.0.4
+dataclasses==0.8
+dnspython==2.2.1
+Flask==2.0.3
+future==0.18.3
+importlib-metadata==4.8.3
+itsdangerous==2.0.1
+Jinja2==3.0.3
+MarkupSafe==2.0.1
+python-whois==0.8.0
+pythonwhois==2.4.3
+regex==2023.6.3
+typing-extensions==4.1.1
+Werkzeug==2.0.3
+zipp==3.6.0

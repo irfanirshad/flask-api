@@ -1,6 +1,6 @@
-import pythonwhois
+import whois
 
+def whois_query(query):
+    result = whois.whois(query)
+    return {'result': result}
 
-def whois(query):
-    result = pythonwhois.get_whois(query)
-    return { 'result' : result }

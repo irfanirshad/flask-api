@@ -1,0 +1,4 @@
+[console_scripts]
+dnseval = dnseval:main
+dnsping = dnsping:main
+dnstraceroute = dnstraceroute:main

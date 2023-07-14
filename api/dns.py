@@ -1,22 +1,17 @@
 import dns.resolver
-
+import subprocess
 import dns.resolver
 
-def check_dns_propogation(url, regions): # TODO: dnspython not working ..need another library to fix this
-    '''Needs to be fixed...'''
-    results = {}
+def propagation(url): # TODO: Not sure if this was what we intended.
+    '''Fixed v1'''
+    try:
+        command = f'python /app/dnsdiag/dnsping.py -c 5 --dnssec --flags --tls -t AAAA -s 9.9.9.9 {url}'
+        output = subprocess.check_output(command, shell=True).decode()
+    except:
+        output = "An error occurred. Please check url and try again"
+    finally:
+        return {'result': str(output)}
 
-    resolver = dns.resolver.Resolver()
-
-    for region in regions:
-        try:
-            resolver.nameservers = [dns.resolver.zone_for_name(region).to_text()]
-            answers = resolver.resolve(url, 'A')
-            results[region] = len(answers) > 0
-        except dns.resolver.NXDOMAIN:
-            results[region] = False
-
-    return results
 
 
 

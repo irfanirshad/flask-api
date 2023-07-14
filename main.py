@@ -1,10 +1,11 @@
 from flask import Flask, jsonify, request
-from api.dns import check_dns_propogation, dns_lookup
+from api.dns import propagation, dns_lookup
 from api.reverse_dns import reverse_dns
 from api.whois import whois_query
 from dns import resolver, reversename
 import subprocess
 import time
+
 
 app = Flask(__name__)
 
@@ -20,18 +21,16 @@ app = Flask(__name__)
 #     result = check_dns_propogation(url, regions)
 #     return jsonify(result)
 
-@app.route('/dns-propagation', methods=['POST'])
+@app.route('/dns/propagation', methods=['POST'])
 def dns_propagation():
-    url = request.json['url']  # Assuming the URL is provided in the JSON payload
+    data = request.json
+    url = data.get('url')
 
-    try:
-        command = f'/app/venv/bin/dnsping.py -c 5 --dnssec --flags --tls -t AAAA -s 9.9.9.9 {url}'
-        output = subprocess.check_output(command, shell=True).decode()
+    if not url:
+        return jsonify({"error": "Invalid request"}), 400
 
-        return output
-
-    except Exception as e:
-        return jsonify(error=str(e)), 400
+    result = propagation(url)
+    return result
 
 @app.route('/dns/lookup', methods=['POST'])
 def dns_lookup_endpoint():

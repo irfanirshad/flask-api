@@ -10,12 +10,16 @@ COPY . /app
 # Install project dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install dnsping from source
-RUN pip install dnsdiag
+# Download dnsdiag repository and install requirements
+RUN git clone https://github.com/farrokhi/dnsdiag.git \
+    && cd dnsdiag \
+    && pip install --no-cache-dir -r requirements.txt
+
+# Set the working directory back to the Flask app
+WORKDIR /app
 
 # Expose the port your Flask app is running on
 EXPOSE 8000
 
 # Set the entry point to run the Flask app
 CMD ["python", "main.py", "--port", "8000"]
-
